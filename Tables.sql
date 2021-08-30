@@ -6,7 +6,7 @@ CREATE TABLE user
     PRIMARY KEY (Username) 
 );
 
-ALTER TABLE `user` ADD UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE;
+ALTER TABLE `user` ADD UNIQUE INDEX `Email_UNIQUE` (`Email` ASC);
 
 -- with unique index on the email to ignore dups
 
