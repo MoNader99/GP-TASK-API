@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 db = yaml.load(open('db.yaml'))
 # ------------------------------ API start ------------------------------#
-@app.route('/',methods = ['/GET'])
+@app.route('/')
 def homepage():
     return """
     Hello world!
@@ -16,7 +16,7 @@ def homepage():
     This is my first web app!
 
     I'm so excited!
-    """
+    """,200
 
 @app.route('/signup',methods = ['POST'])
 def SignupHandler():
