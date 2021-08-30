@@ -1,4 +1,3 @@
-from mysql.connector import Error, connection, cursor
 from flask import Flask, request ,jsonify
 import mysql.connector
 import utilities
