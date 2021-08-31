@@ -65,14 +65,15 @@ def LoginHandler():
 @app.route('/insert-numbers',methods = ['POST'])
 def InsertNumbersHandler():
     data = request.json
-    x = data['numbers'];
+    numbers = data['numbers'];
     try:
+        for i in range(len(numbers)):
+            numbers[i] = (numbers[i],)
         try:
             connection,cursor = utilities.ConnectToDatabase(db)
-            for number in x:
-                sql = """INSERT INTO numbers(TestNumber) VALUES (%s) """
-                cursor.execute(sql, (number,))
-                connection.commit()
+            sql = """INSERT INTO numbers(TestNumber) VALUES (%s) """
+            cursor.executemany(sql, numbers)
+            connection.commit()
             cursor.close()
             connection.close()
             return jsonify({"status": "Posted :)"}),201
