@@ -52,9 +52,9 @@ def LoginHandler():
                 if data['password'] == result[1]:
                     return jsonify({"status": "logged In"}),200
                 else:
-                    return jsonify({"status": "Password is not correct"}),200
+                    return jsonify({"status": "Password is not correct"}),400
             else:
-                return jsonify({"status": "Username or email is not correct"}),200
+                return jsonify({"status": "Username or email is not correct"}),400
         except mysql.connector.Error as error:
             return jsonify({"status": format(error)}),500
 
@@ -97,7 +97,7 @@ def showNumbersHandler():
             cursor.close()
             connection.close()
 
-            return jsonify(numbers = result),201
+            return jsonify(numbers = result),200
 
         except mysql.connector.Error as error:
             return jsonify({"status": format(error)}),500
