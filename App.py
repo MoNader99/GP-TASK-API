@@ -6,7 +6,9 @@ import yaml
 
 app = Flask(__name__)
 
-db = yaml.load(open('db.yaml'))
+
+db = yaml.load(open('db.yaml'), Loader=yaml.FullLoader)
+
 # ------------------------------ API start ------------------------------#
 @app.route('/')
 def homepage():
@@ -89,6 +91,8 @@ def showNumbersHandler():
             cursor = connection.cursor()
             cursor.execute(sql_select_Query)
             result = cursor.fetchall()
+            for i in range(len(result)):
+                result[i] = result[i][0]
             cursor.close()
             connection.close()
 
